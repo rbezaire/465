@@ -13,6 +13,7 @@
 #nav {
     line-height:30px;
     background-color:blue;
+    color:white;
     text-align:center;
     padding:5px;	      
 }
@@ -49,17 +50,24 @@ Start: <%= @start %>
 <br>
 Goal: <%=@goal %>
 <br>
+</div>
 
+<div id= "header">
+    <br>
+    <br>
     <%= submit_tag("!!CheckY ChaN!!") %>
+    <br>
+    <br>
+    <br>
 </div>
 
 
     <%= hidden_field_tag(:start, @start)%>
     <%= hidden_field_tag(:goal, @goal)%>
 
-<% end %>
 </p1>
 </body>
 
 <br>
+<% end %>
 </html>

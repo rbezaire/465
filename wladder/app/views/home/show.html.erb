@@ -1,7 +1,31 @@
+<!DOCTYPE html>
+<html>
 <%= link_to "WLadder", root_path %>
+<head>
 
-<p><%= "$ wladder #{@query} returned" %></p>
+<style>
 
+#header {
+    background-color:red;
+    color:black;
+    padding:5px;
+}
+
+#nav {
+    line-height:30px;
+    background-color:blue;
+    color:white;
+    text-align:center;
+    padding:5px;	      
+}
+
+</style>
+</head>
+
+<div id= "header">
+</div>
+
+<div id= "nav">
 Start: <%= @start %>
 <br>
 
@@ -10,13 +34,12 @@ Start: <%= @start %>
 
 	<% else %>
     		<%= x %>
+		<br>
 	<% end %>
-<br>
 <% end %>
 
 Goal:
 <%= @goal %>
-<br>
 <br>
 
 Oh Hey Guess What! YOU
@@ -28,5 +51,8 @@ Brotha...
 or Sista (I'm not playing favorites)
 <br>
 <br>
+</div>
+<div id= "header">
+</div>
 
 <%= link_to "WLadder", root_path %>
