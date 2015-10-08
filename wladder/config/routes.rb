@@ -53,4 +53,14 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+root "home#index"
+get 'start', to: "home#show"
+get 'goal', to: "home#show"
+get 'query1', to: "home#show"
+get 'query2', to: "home#show"
+get 'query3', to: "home#show"
+get 'query4', to: "home#show"
+get 'query5', to: "home#show"
+
 end

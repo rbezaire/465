@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+#header {
+    background-color:red;
+    color:black;
+    text-align:center;
+    padding:5px;
+}
+
+#nav {
+    line-height:30px;
+    background-color:blue;
+    text-align:center;
+    padding:5px;	      
+}
+
+</style>
+</head>
+
+<div id= "header">
+<h1><b><i>WLadder</i></b></h1>
+</div>
+
+<body>
+<p1>
+
+<div id= "nav">
+Start: <%= @start %>
+
+<%= form_tag(query1_path, method: "get") do  %>
+
+    <%= label_tag(:query1, "Step 1: ") %>
+    <%= text_field_tag(:query1) %>
+<br>
+    <%= label_tag(:query2, "Step 2: ") %>
+    <%= text_field_tag(:query2) %>
+<br>
+    <%= label_tag(:query3, "Step 3: ") %>
+    <%= text_field_tag(:query3) %>
+<br>
+    <%= label_tag(:query4, "Step 4: ") %>
+    <%= text_field_tag(:query4) %>
+<br>
+    <%= label_tag(:query5, "Step 5: ") %>
+    <%= text_field_tag(:query5) %>
+<br>
+Goal: <%=@goal %>
+<br>
+
+    <%= submit_tag("!!CheckY ChaN!!") %>
+</div>
+
+
+    <%= hidden_field_tag(:start, @start)%>
+    <%= hidden_field_tag(:goal, @goal)%>
+
+<% end %>
+</p1>
+</body>
+
+<br>
+</html>

@@ -1,0 +1,32 @@
+<%= link_to "WLadder", root_path %>
+
+<p><%= "$ wladder #{@query} returned" %></p>
+
+Start: <%= @start %>
+<br>
+
+<% @array.each do |x| %>
+	<% if( @array.first == x or @array.last == x )%>
+
+	<% else %>
+    		<%= x %>
+	<% end %>
+<br>
+<% end %>
+
+Goal:
+<%= @goal %>
+<br>
+<br>
+
+Oh Hey Guess What! YOU
+
+<%= @won %>
+
+Brotha...
+<br>
+or Sista (I'm not playing favorites)
+<br>
+<br>
+
+<%= link_to "WLadder", root_path %>
