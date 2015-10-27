@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>URL:</strong>
+  <%= @reference.url %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @reference.time %>
+</p>
+
+<%= link_to "Show Topics", reference_topics_path(@reference) %> |
+<%= link_to 'Edit', edit_reference_path(@reference) %> |
+<%= link_to 'Show all References', references_path %>
