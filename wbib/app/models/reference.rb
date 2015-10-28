@@ -1,3 +1,8 @@
 class Reference < ActiveRecord::Base
-	belongs_to :topic
+
+  validates :url, presence: true
+  validates :time, presence: true
+
+  belongs_to :topics
+
 end

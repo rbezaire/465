@@ -1,7 +1,7 @@
-<%= form_for([@reference, @topic]) do |f| %>
-  <% if @topic.errors.any? %>
+<%= form_for(@topic) do |f| %>
+<% if @topic.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
+      <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this Topic from being saved:</h2>
 
       <ul>
       <% @topic.errors.full_messages.each do |message| %>
@@ -19,11 +19,30 @@
     <%= f.label :description %><br>
     <%= f.text_field :description %>
   </div>
-  <div class="field">
-    <%= f.label :reference %><br>
-    <%= f.number_field :reference %>
+
+
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
+  <% if @topic.references.last.new_record? %>
+    <%= f.fields_for :references do |references_form| %>
+      <h1>New Reference</h1>
+        <div class="field">
+          <%= references_form.label :url %><br>
+          <%= references_form.text_field :url %>
+        </div>
+        <div class="field">
+          <%= references_form.label :time %><br>
+          <%= references_form.text_field :time %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+  <br>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  <br>
 <% end %>
+

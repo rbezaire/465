@@ -1,6 +1,6 @@
-<h1>Editing reference</h1>
+<h1>Edit reference for <%= @reference.topic.title %> </h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show this Reference', @reference %> |
-<%= link_to 'Show all References', references_path %>
+<%= link_to 'Back', topic_references_path(@rating) %>
+

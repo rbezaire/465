@@ -1,9 +1,17 @@
 Rails.application.routes.draw do
 
-	resources :reference do
-		resources :topic, shallow: true
-	end
+  # reference's routes will be nested inside a topic for index, new, and create
+  # reference route: 
+  #      /topics/:topic_id/references
+  #      /topics/:topic_id/references/new
+  #      /topics/:topic_id/references/create
 
-	root 'references#index'
+  # reference's routes will NOT be nested for show, edit, update, destroy
+  # /references/:id/
+  resources :topics do
+    resources :references, shallow: true
+  end
+
+  root 'topics#index'
 
 end
