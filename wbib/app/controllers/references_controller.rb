@@ -45,7 +45,7 @@ class ReferencesController < ApplicationController
     @reference = @topic.references.new(reference_params)
 
     if @reference.save
-      redirect_to topic_references_url(@topic) , notice: 'Reference was successfully created.'
+      redirect_to topic_path(@topic) , notice: 'Reference was successfully created.'
     else
       render :new
     end
@@ -76,6 +76,6 @@ class ReferencesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reference_params
-      params.require(:reference).permit(:url, :time)
+      params.require(:reference).permit(:url)
     end
 end

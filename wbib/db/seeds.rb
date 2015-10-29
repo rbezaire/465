@@ -15,10 +15,10 @@ topics = Topic.create(
 )
 references = Reference.create(
     [
-        {url: 'http://helloworld.com/', time: '', topic_id: topics[0].id},
-        {url: 'https://alksdfaljhgfkah.com', time: '', topic_id: topics[1].id},
-        {url: 'https://www.whataloser.com', time: '', topic_id: topics[2].id},
-        {url: 'https://www.yourock.com', time: '', topic_id: topics[3].id}
+        {url: 'http://helloworld.com/', topic_id: topics[0].id},
+        {url: 'https://alksdfaljhgfkah.com', topic_id: topics[1].id},
+        {url: 'https://www.whataloser.com', topic_id: topics[2].id},
+        {url: 'https://www.yourock.com', topic_id: topics[3].id}
     ]
 )
 
