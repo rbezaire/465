@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :users
   resources :image_users
   resources :tags
   resources :images
