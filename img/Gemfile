@@ -23,16 +23,7 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-#quiet_asserts gem improves the readability of the output when running in development mode
-gem 'quiet_assets', group: :development
-
-#better_errors gem improves the error messages when the program crashes
-gem 'better_errors', group: :development
-
-#binding_of_caller gem allows you to print variables when the program crashes
-gem 'binding_of_caller', group: :development
-
-#devise gem to add user
+# devise gem to add user
 gem 'devise'
 
 # Use ActiveModel has_secure_password
