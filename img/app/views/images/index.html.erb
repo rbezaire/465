@@ -1,33 +1,59 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Images</h1>
-
-<%if user_signed_in? %>
-  <% @images.each do |image| %>
-    
-<div class="box2">
-	<table>
-    	<tr>
-			<td>
-				<%=link_to (image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename), image %>
-				<br> <%=image.user.name %>
-			</td>
-
-			<td><%= link_to 'Edit', edit_image_path(image) %></td>
-			<td><%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-		</tr>
-	</table>
-</div>
-
-  <% end %>
+<%=link_to 'New Image', new_image_path %>
 
 <br>
 
-<%=link_to 'New Image', new_image_path %>
+<h1><%=current_user.name%>'s Images</h1>
+<% if user_signed_in? %>
+  <% @images.each do |image| %>
+	  <% if current_user.name == image.user.name %>
+		<div class="box2">
+		<table>
+			<tr>
+				<td>
+					<%=link_to (image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename), image %>
+				</td>
 
-<%else%>
+				<td><%= link_to 'Edit', edit_image_path(image) %></td>
+				<td><%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			</tr>
+		</table>
+		</div>
+	  <% end %>
+  <% end %>
+<br>
+<br>
+<br>
+
+<h1>Public Images<h1>
+
+  <% @images.each do |image| %>
+	  <% if current_user.name != image.user.name %>
+		<div class="box2">
+		<table>
+			<tr>
+				<td>
+					<%=link_to (image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename), image %>
+					<br> <%=image.user.name %>
+				</td>
+
+				<td><%= link_to 'Edit', edit_image_path(image) %></td>
+				<td><%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			</tr>
+		</table>
+		</div>
+	  <% end %>
+  <% end %>
+
+
+<br>
+
+<% else %>
+
 	<% @images.each do |image| %>
-<div class="box2">
+
+	<div class="box2">
 	<table>
 		<tr>
 			<td>
@@ -36,7 +62,6 @@
 			</td>
 		</tr>
 	</table>
-</div>
-	<% end %>
-
+	</div>
+<% end %>
 <% end %>
