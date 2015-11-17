@@ -1,11 +1,16 @@
+<div class="body">
+<html class="body">
+
 <p id="notice"><%= notice %></p>
 
 <%=link_to 'New Image', new_image_path %>
 
+<center><h1>!! Social Image Network !!</h1></center>
+
 <br>
 
-<h1><%=current_user.name%>'s Images</h1>
 <% if user_signed_in? %>
+<center><h2>Users Images</h2></center>
   <% @images.each do |image| %>
 	  <% if current_user.name == image.user.name %>
 		<div class="box2">
@@ -13,10 +18,10 @@
 			<tr>
 				<td>
 					<%=link_to (image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename), image %>
+				<br>
+				<%= link_to 'Edit', edit_image_path(image) %>
+				<%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' } %>
 				</td>
-
-				<td><%= link_to 'Edit', edit_image_path(image) %></td>
-				<td><%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 			</tr>
 		</table>
 		</div>
@@ -26,7 +31,7 @@
 <br>
 <br>
 
-<h1>Public Images<h1>
+<center><h2>Public Images<h2></center>
 
   <% @images.each do |image| %>
 	  <% if current_user.name != image.user.name %>
@@ -37,7 +42,7 @@
 					<%=link_to (image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename), image %>
 					<br> <%=image.user.name %>
 				</td>
-
+				<br>
 				<td><%= link_to 'Edit', edit_image_path(image) %></td>
 				<td><%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 			</tr>
@@ -51,17 +56,19 @@
 
 <% else %>
 
+<center><h2>Public Images<h2></center>
 	<% @images.each do |image| %>
-
-	<div class="box2">
-	<table>
 		<tr>
 			<td>
+			<% if image.private == "f" %>
+			<div class="box2">
 			<%=link_to (image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename), image %>
 			<br> <%= image.user.name %>
+			</div>
+			<% end %>
 			</td>
 		</tr>
-	</table>
-	</div>
 <% end %>
 <% end %>
+</html>
+</div>
