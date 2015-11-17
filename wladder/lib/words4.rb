@@ -1963,6 +1963,7 @@ def dictionary
 "left",
 "legs",
 "lehr",
+"leid",
 "leis",
 "leke",
 "leks",
