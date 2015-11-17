@@ -1,9 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Images</h1>
+
 <%if user_signed_in? %>
   <% @images.each do |image| %>
     
+<div class="box2">
 	<table>
     	<tr>
 			<td>
@@ -15,6 +17,8 @@
 			<td><%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 		</tr>
 	</table>
+</div>
+
   <% end %>
 
 <br>
@@ -23,6 +27,7 @@
 
 <%else%>
 	<% @images.each do |image| %>
+<div class="box2">
 	<table>
 		<tr>
 			<td>
@@ -31,6 +36,7 @@
 			</td>
 		</tr>
 	</table>
+</div>
 	<% end %>
 
 <% end %>
