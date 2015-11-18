@@ -9,16 +9,6 @@
 </p>
 
 <p>
-  <% if @image.private == "t" %>
-  <strong>Private Image</strong>
-
-  <% else %>
-  <strong>Public Image</strong>
-
-  <% end %>
-</p>
-
-<p>
   <% if user_signed_in? %>
   <strong>Owner:</strong>
   <%= @image.user.name %>
@@ -42,6 +32,20 @@
 <%= new_tag.text_field :str %>
 <%= new_tag.submit "Add Tag" %>
 <% end %>
+<br>
+
+<%= link_to 'Change to Public or Private', edit_image_path %>
+<br>
+<br>
+<p>
+  <% if @image.private == "t" %>
+  <strong>Private Image</strong>
+
+  <% else %>
+  <strong>Public Image</strong>
+  <% end %>
+</p>
+<br>
 <br>
 
 <%= link_to 'Back', images_path %>
