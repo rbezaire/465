@@ -1,5 +1,6 @@
 <div class="body">
 <center>
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -29,10 +30,20 @@
 
 <strong>Tags:</strong>
 <% @tag.each do |tag| %>
-	<%= tag.str %> <br>
+	<%= tag.str %>
+	<%= link_to "EDIT", edit_tag_path(tag) %>
+    <%= link_to "DELETE", tag, method: :delete %>
+	<br>
 <% end %>
 
-<%= link_to 'Edit', edit_image_path(@image) %> |
+<br>
+<strong>New Tag</strong>
+<%= form_for([@image,@tag_new]) do |new_tag| %>
+<%= new_tag.text_field :str %>
+<%= new_tag.submit "Add Tag" %>
+<% end %>
+<br>
+
 <%= link_to 'Back', images_path %>
 
   <% else %>
@@ -40,15 +51,15 @@
   <strong>Owner:</strong>
   <%= @image.user.name %><br> 
   <%= image_tag @image.filename, size: "800x800", alt: @image.filename %>
-</p>
+  </p>
 
-<strong>Tags:</strong>
-<% @tag.each do |tag| %>
-	<%= tag.str %> <br>
-<% end %>
+	<strong>Tags:</strong>
+	<% @tag.each do |tag| %>
+		<%= tag.str %> <br>
+	<% end %>
 
-<%= link_to 'Back', images_path %>
+	<%= link_to 'Back', images_path %>
 
-<% end %>
+  <% end %>
 </center>
 </div>

@@ -11,6 +11,7 @@ class ImagesController < ApplicationController
   # GET /images/1.json
   def show
 	@tag = @image.tags.all
+	@tag_new = Tag.new
   end
 
   # GET /images/new
@@ -23,18 +24,23 @@ class ImagesController < ApplicationController
   end
 
   # POST /images
-  # POST /images.json
+
+# POST /images
   def create
     @image = Image.new(image_params)
+    @image.generate_filename  # a function you write to generate a random filename and put it in the images "filename" variable
+    @image.user = current_user
 
-    respond_to do |format|
-      if @image.save
-        format.html { redirect_to @image, notice: 'Image was successfully created.' }
-        format.json { render :show, status: :created, location: @image }
-      else
-        format.html { render :new }
-        format.json { render json: @image.errors, status: :unprocessable_entity }
-      end
+    @uploaded_io = params[:image][:uploaded_file]
+
+    File.open(Rails.root.join('public', 'images', @image.filename), 'wb') do |file|
+        file.write(@uploaded_io.read)
+    end
+
+    if @image.save
+      redirect_to @image, notice: 'Image was successfully created.'
+    else
+      render :new
     end
   end
 
