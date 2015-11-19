@@ -1,69 +1,62 @@
 <div class="body">
 <center>
-
+<font size="4">
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Filename:</strong>
+  <h2>Filename:</h2>
   <%= @image.filename %>
 </p>
 
 <p>
-  <% if user_signed_in? %>
-  <strong>Owner:</strong>
-  <%= @image.user.name %>
-  <br>
-  <br>
-  <%= image_tag @image.filename, size: "800x800", alt: @image.filename %>
-  <br>
+	<% if user_signed_in? %>
+		<h2>Owner:</h2>
+		<%= @image.user.name %><br><br>
+		<%= image_tag @image.filename, size: "800x800", alt: @image.filename %><br>
 </p>
 
-<strong>Tags:</strong>
-<% @tag.each do |tag| %>
-	<%= tag.str %>
-	<%= link_to "EDIT", edit_tag_path(tag) %>
-    <%= link_to "DELETE", tag, method: :delete %>
-	<br>
-<% end %>
+	<h2>Tags:</h2>
+	<% @tag.each do |tag| %>
+		<%= tag.str %>
+		<%= link_to "EDIT", edit_tag_path(tag) %></h3>
+		<%= link_to 'Destroy', tag, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+	<% end %><br>
 
-<br>
-<strong>New Tag</strong>
-<%= form_for([@image,@tag_new]) do |new_tag| %>
-<%= new_tag.text_field :str %>
-<%= new_tag.submit "Add Tag" %>
-<% end %>
-<br>
+	<h2>New Tag</h2>
+	<%= form_for([@image,@tag_new]) do |new_tag| %>
+	<%= new_tag.text_field :str %>
+	<%= new_tag.submit "Add Tag" %>
+	<% end %><br>
 
-<%= link_to 'Change to Public or Private', edit_image_path %>
-<br>
-<br>
+<%= link_to 'Change to Public or Private', edit_image_path %><br><br>
+
 <p>
-  <% if @image.private == "t" %>
-  <strong>Private Image</strong>
+	<% if @image.private == "t" %>
+		<h2>Private Image</h2>
 
-  <% else %>
-  <strong>Public Image</strong>
-  <% end %>
-</p>
-<br>
-<br>
+	<% else %>
+		<h2>Public Image</h2>
+	<% end %>
+
+</p><br><br>
 
 <%= link_to 'Back', images_path %>
 
-  <% else %>
+<% else %>
 
-  <strong>Owner:</strong>
-  <%= @image.user.name %><br> 
-  <%= image_tag @image.filename, size: "800x800", alt: @image.filename %>
-  </p>
+<p>
+	<h2>Owner:</h2>
+	<%= @image.user.name %><br> 
+	<%= image_tag @image.filename, size: "800x800", alt: @image.filename %>
+</p>
 
-	<strong>Tags:</strong>
-	<% @tag.each do |tag| %>
+	<h2>Tags:</h2>
+		<% @tag.each do |tag| %>
 		<%= tag.str %> <br>
-	<% end %>
+		<% end %>
 
 	<%= link_to 'Back', images_path %>
-
-  <% end %>
+<% end %>
+</font>
 </center>
 </div>

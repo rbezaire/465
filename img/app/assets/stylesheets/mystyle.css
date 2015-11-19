@@ -1,0 +1,13 @@
+.brdr {
+	border: 5px solid black;
+}
+
+.floating-box {
+	display: inline-block;
+	border-radius: 25px;
+    background: purple;
+    padding: 20px; 
+    width: 200px;
+    height: 150px;    
+border: 5px solid red;
+
