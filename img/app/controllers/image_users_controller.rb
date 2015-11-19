@@ -14,11 +14,23 @@ class ImageUsersController < ApplicationController
 
   # GET /image_users/new
   def new
-    @image_user = ImageUser.new
+	@image = Image.find params[:image_id]
+	@image_user = image.image_users.new
+	@imgeUser = getUser
+  end
+
+  def getUser
+	@imgUsers = User.all
+	ary = Array.new
+	@imgUsers.each do |img|
+		ary.push([img.name + '(' + img.email + ') ', img.id])
+	end
+  	return ary
   end
 
   # GET /image_users/1/edit
   def edit
+	@imgeUser = getUser
   end
 
   # POST /image_users
