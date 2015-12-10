@@ -2,17 +2,17 @@
 
 <p>
   <strong>Recipe:</strong>
-  <%= @rating.recipe_id %>
-</p>
-
-<p>
-  <strong>Comment:</strong>
-  <%= @rating.comment %>
+  <%= @rating.recipe %>
 </p>
 
 <p>
   <strong>Rate:</strong>
   <%= @rating.rate %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @rating.comment %>
 </p>
 
 <%= link_to 'Edit', edit_rating_path(@rating) %> |

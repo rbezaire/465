@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  resources :recipes
   resources :images
+  resources :recipes
   resources :ratings
   devise_for :users
 
-  root 'health#index'
+  root 'recipes#index'
 
 end

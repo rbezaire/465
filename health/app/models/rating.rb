@@ -1,3 +1,3 @@
 class Rating < ActiveRecord::Base
-  belongs_to :recipe_id
+  belongs_to :recipe
 end

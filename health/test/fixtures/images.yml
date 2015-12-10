@@ -2,8 +2,8 @@
 
 one:
   filename: MyString
-  recipe_id_id: 
+  recipe_id: 
 
 two:
   filename: MyString
-  recipe_id_id: 
+  recipe_id: 

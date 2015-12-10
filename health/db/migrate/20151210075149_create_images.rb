@@ -2,7 +2,7 @@ class CreateImages < ActiveRecord::Migration
   def change
     create_table :images do |t|
       t.string :filename
-      t.references :recipe_id, index: true, foreign_key: true
+      t.references :recipe, index: true, foreign_key: true
 
       t.timestamps null: false
     end

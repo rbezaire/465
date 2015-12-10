@@ -2,6 +2,8 @@
 
 one:
   ingredients: MyText
+  image: MyString
 
 two:
   ingredients: MyText
+  image: MyString

@@ -11,26 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151209234449) do
+ActiveRecord::Schema.define(version: 20151210075149) do
 
   create_table "images", force: :cascade do |t|
     t.string   "filename"
-    t.integer  "recipe_id_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "recipe_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "images", ["recipe_id_id"], name: "index_images_on_recipe_id_id"
+  add_index "images", ["recipe_id"], name: "index_images_on_recipe_id"
 
   create_table "ratings", force: :cascade do |t|
-    t.integer  "recipe_id_id"
-    t.text     "comment"
+    t.integer  "recipe_id"
     t.integer  "rate"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.text     "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "ratings", ["recipe_id_id"], name: "index_ratings_on_recipe_id_id"
+  add_index "ratings", ["recipe_id"], name: "index_ratings_on_recipe_id"
 
   create_table "recipes", force: :cascade do |t|
     t.text     "ingredients"
