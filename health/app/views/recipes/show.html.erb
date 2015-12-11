@@ -5,6 +5,14 @@
   <%= @recipe.ingredients %>
 </p>
 
+<p>
+  <h2>New Image</h2>
+	<%= form_for([@recipe,@image_new]) do |new_img| %>
+	  <%= new_img.label :filename %>
+	  <%= new_img.file_field :uploaded_file %>
+	  <%= new_img.submit 'Add Image' %>
+	<% end %><br>
+</p>
 
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
 <%= link_to 'Back', recipes_path %>

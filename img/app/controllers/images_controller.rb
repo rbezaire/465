@@ -23,8 +23,7 @@ class ImagesController < ApplicationController
   def edit
   end
 
-  # POST /images
-
+# POST /images
 # POST /images
   def create
     @image = Image.new(image_params)

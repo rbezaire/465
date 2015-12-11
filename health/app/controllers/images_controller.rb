@@ -24,11 +24,24 @@ class ImagesController < ApplicationController
   # POST /images
   # POST /images.json
   def create
-    @image = Image.new(image_params)
+	recipe = Recipe.find(params[:recipe_id])
+#	@image = @recipe.gen_filename
+    @image = recipe.images.new(image_params)
+	@uploaded_io = params[:image][:uploaded_file]
+
+	File.open(Rails.root.join('public', 'images', @image.filename), 'wb') do |file|
+		file.write(@uploaded_io.read)
+	end
+
+#	if @image.save
+#		redirect_to @recipe, notice: 'Image was  successfully created.'
+#	else
+#		render :new
+#	end
 
     respond_to do |format|
       if @image.save
-        format.html { redirect_to @image, notice: 'Image was successfully created.' }
+        format.html { redirect_to @image.recipe, notice: 'Image was successfully created.' }
         format.json { render :show, status: :created, location: @image }
       else
         format.html { render :new }

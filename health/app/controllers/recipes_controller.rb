@@ -12,11 +12,14 @@ class RecipesController < ApplicationController
   def show
 	@rating = @recipe.ratings.all
 	@rating_new = Rating.new
+	@image = @recipe.images.all
+	@image_new = Image.new
   end
 
   # GET /recipes/new
   def new
     @recipe = Recipe.new
+	@image = Image.new
   end
 
   # GET /recipes/1/edit
@@ -26,10 +29,9 @@ class RecipesController < ApplicationController
   # POST /recipes
   # POST /recipes.json
   def create
-	
 	@recipe = Recipe.new(recipe_params)
 
-    respond_to do |format|
+        respond_to do |format|
       if @recipe.save
         format.html { redirect_to @recipe, notice: 'Recipe was successfully created.' }
         format.json { render :show, status: :created, location: @recipe }
