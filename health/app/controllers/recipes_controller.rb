@@ -19,6 +19,7 @@ class RecipesController < ApplicationController
   # GET /recipes/new
   def new
     @recipe = Recipe.new
+    @rating = Rating.new
 	@image = Image.new
   end
 
@@ -75,6 +76,6 @@ class RecipesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
-      params.require(:recipe).permit(:ingredients, :image)
+      params.require(:recipe).permit(:ingredients, :image, :recipe_name)
     end
 end

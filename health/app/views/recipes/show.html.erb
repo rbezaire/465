@@ -1,27 +1,87 @@
-<p id="notice"><%= notice %></p>
+<style>
+.floating-box {
+    display: inline-block;
+    border-radius: 25px;
+    background: yellow;
+    padding: 20px;
+    width: 200px;
+    height: 150px;
+	border: 5px solid red;
+}
+</style>
 
-<br>
-<p>
-  <strong>Ingredients:</strong><br>
-  <%= safe_join(@recipe.ingredients.split("\r\n"), "<br/>".html_safe) %>
-</p>
-<br><br>
+<h1>Recipe: <%= @recipe.recipe_name %></h1>
 
 <p>
   <% @image.each do |img| %>
-	<% if img.recipe_id == @recipe.id %>
-      <%= image_tag img.filename, size: "200x200", alt: img.filename %><br>
+   <div class="floating-box">
+   <table>
+	<% if img.present? %>
+		<% if img.recipe_id == @recipe.id %>
+		  <td><%= image_tag img.filename, size: "200x140", alt: img.filename %>
+		  <%= link_to 'Delete Image', img, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		<% end %>
 	<% end %>
-    <br>
+   </table>
+   </div>
   <% end %>
+    <br>
+</p>
+
+<p>
+  <h3>Ingredients:</h3>
+  <%= safe_join(@recipe.ingredients.split("\r\n"), "<br/>".html_safe) %>
+  <%= link_to 'Edit Rating', edit_recipe_path(@recipe) %>
 </p>
 <br><br>
 
+
+<% if @rating.present? %>
+<h3>Listing Ratings</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Rate</th>
+      <th>Comment</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+<% end %>
+
+  <tbody>
+    <% @rating.each do |rating| %>
+	 <% if rating.present? %>
+
+	   <% if rating.recipe_id == @recipe.id %>
+		 <tr>
+	      <td><%= rating.rate %></td>
+		  <td><%= rating.comment %></td>
+		  <td><%= link_to 'Show', rating %></td>
+		  <td><%= link_to 'Edit', edit_rating_path(rating) %></td>
+		  <td><%= link_to 'Destroy', rating, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		 </tr>
+	   <% end %>
+	 <% end %>
+    <% end %>
+  </tbody>
+</table>
+
 <p>
-  <h2>Upload New Image</h2>
+  <h3>Give a Rating</h3>
+	<%= form_for([@recipe,@rating_new]) do |new_rat| %>
+	  <%= new_rat.label :rate %><br>
+	  <%= new_rat.number_field :rate %>
+	  <%= new_rat.label :comment %><br>
+	  <%= new_rat.text_area :comment %><br>
+	  <%= new_rat.submit "Add Rating" %>
+	<% end %><br>
+</p>
+
+<p>
+  <h3>Upload New Image</h3>
 	<%= form_for([@recipe,@image_new]) do |new_img| %>
-	  <%= new_img.label :filename %>
-	  <%= new_img.file_field :uploaded_file %>
+	  <%= new_img.file_field :uploaded_file %><br>
 	  <%= new_img.submit 'Add Image' %>
 	<% end %><br>
 </p>

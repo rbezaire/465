@@ -24,17 +24,25 @@ class RatingsController < ApplicationController
   # POST /ratings
   # POST /ratings.json
   def create
-    @rating = Rating.new(rating_params)
+	recipe = Recipe.find(params[:recipe_id])
+    @rating = recipe.ratings.new(rating_params)
 
-    respond_to do |format|
-      if @rating.save
-        format.html { redirect_to @rating, notice: 'Rating was successfully created.' }
-        format.json { render :show, status: :created, location: @rating }
-      else
-        format.html { render :new }
-        format.json { render json: @rating.errors, status: :unprocessable_entity }
-      end
-    end
+	if @rating.save
+		redirect_to @rating.recipe, notice: 'Image was successfully created.'
+	else
+		render :new
+	end
+	
+
+#    respond_to do |format|
+#      if @rating.save
+ #       format.html { redirect_to @rating.recipe, notice: 'Rating was successfully created.' }
+  #      format.json { render :show, status: :created, location: @rating }
+   #   else
+    #    format.html { render :new }
+     #   format.json { render json: @rating.errors, status: :unprocessable_entity }
+ #     end
+ #   end
   end
 
   # PATCH/PUT /ratings/1
@@ -42,7 +50,7 @@ class RatingsController < ApplicationController
   def update
     respond_to do |format|
       if @rating.update(rating_params)
-        format.html { redirect_to @rating, notice: 'Rating was successfully updated.' }
+        format.html { redirect_to recipe_url(@rating.recipe), notice: 'Rating was successfully updated.' }
         format.json { render :show, status: :ok, location: @rating }
       else
         format.html { render :edit }
@@ -55,10 +63,11 @@ class RatingsController < ApplicationController
   # DELETE /ratings/1.json
   def destroy
     @rating.destroy
-    respond_to do |format|
-      format.html { redirect_to ratings_url, notice: 'Rating was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+		redirect_to @rating.recipe, notice: 'Rating was successfully destroyed.'
+#    respond_to do |format|
+ #     format.html { redirect_to ratings_url, notice: 'Rating was successfully destroyed.' }
+ #     format.json { head :no_content }
+ #   end
   end
 
   private
