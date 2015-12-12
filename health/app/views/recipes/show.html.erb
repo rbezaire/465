@@ -1,4 +1,4 @@
-<body style="background-color:lightgrey;">
+<body style="background-color:lightgrey;font-family:Times">
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,7 +56,6 @@
 
 
 <%= link_to 'Back', recipes_path %>
-<center style="font-family:Times;">
 
 <div id="border">
 <% if user_signed_in? %>
@@ -70,7 +69,7 @@
    <table>
 	<% if img.present? %>
 		<% if img.recipe_id == @recipe.id %>
-		  <td><%= image_tag img.filename, size: "200x140", alt: img.filename %><br>
+		  <td><%= image_tag img.filename, size: "400x250", alt: img.filename %><br>
 		  <%= link_to 'Delete Image', img, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 		<% end %>
 	<% end %>
@@ -151,7 +150,7 @@
    <table>
 	<% if img.present? %>
 		<% if img.recipe_id == @recipe.id %>
-		  <td><%= image_tag img.filename, size: "200x140", alt: img.filename %>
+		  <td><%= image_tag img.filename, size: "400x250", alt: img.filename %>
 		<% end %>
 	<% end %>
    </table>
