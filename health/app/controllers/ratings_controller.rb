@@ -28,7 +28,7 @@ class RatingsController < ApplicationController
     @rating = recipe.ratings.new(rating_params)
 
 	if @rating.save
-		redirect_to @rating.recipe, notice: 'Image was successfully created.'
+		redirect_to @rating.recipe, notice: 'Rating was successfully created.'
 	else
 		render :new
 	end

@@ -1,4 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+#header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+
+#footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px;
+}
+</style>
+</head>
+<body style="background-color:lightgrey;">
+
+<center>
+<div id="floating-box">
+<div id="header">
 <h2>Forgot your password?</h2>
+</div>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= devise_error_messages! %>
@@ -13,4 +40,6 @@
   </div>
 <% end %>
 
+<div id="footer">
 <%= render "devise/shared/links" %>
+</div>

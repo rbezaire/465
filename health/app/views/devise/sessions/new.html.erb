@@ -1,4 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+#floating-box {
+	padding: 1px;
+	border: 5px solid black;
+}
+#header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+#nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    height:300px;
+    width:100px;
+    float:left;
+    padding:5px;
+}
+#section {
+    width:350px;
+    float:left;
+    padding:10px;
+}
+#footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px;
+}
+</style>
+</head>
+<body style="background-color:lightgrey;">
+
+<center>
+<div id="floating-box">
+<div id="header">
 <h2>Log in</h2>
+</div>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
@@ -23,4 +66,6 @@
   </div>
 <% end %>
 
+<div id="footer">
 <%= render "devise/shared/links" %>
+</div>

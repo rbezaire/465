@@ -1,24 +1,76 @@
+<body style="background-color:lightgrey;">
+<!DOCTYPE html>
+<html>
+<head>
 <style>
-.floating-box {
+
+#border {
+	padding: 1px;
+	border: 5px solid black;
+}
+
+#floating-box {
     display: inline-block;
     border-radius: 25px;
     background: yellow;
-    padding: 20px;
-    width: 200px;
-    height: 150px;
-	border: 5px solid red;
+    padding: 10px;
+	border: 5px solid black;
+}
+
+#floating-box2 {
+    display: inline-block;
+    border-radius: 25px;
+    background: lightgreen;
+    padding: 10px;
+	border: 5px solid black;
+}
+
+#header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+#nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    height:300px;
+    width:100px;
+    float:left;
+    padding:5px;
+}
+#section {
+    width:350px;
+    float:left;
+    padding:10px;
+}
+#footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px;
 }
 </style>
+</head>
 
-<h1>Recipe: <%= @recipe.recipe_name %></h1>
+
+<%= link_to 'Back', recipes_path %>
+<center style="font-family:Times;">
+
+<div id="border">
+<% if user_signed_in? %>
+<div id="header">
+<h1><%= @recipe.recipe_name %></h1>
+</div>
 
 <p>
   <% @image.each do |img| %>
-   <div class="floating-box">
+   <div id="floating-box">
    <table>
 	<% if img.present? %>
 		<% if img.recipe_id == @recipe.id %>
-		  <td><%= image_tag img.filename, size: "200x140", alt: img.filename %>
+		  <td><%= image_tag img.filename, size: "200x140", alt: img.filename %><br>
 		  <%= link_to 'Delete Image', img, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 		<% end %>
 	<% end %>
@@ -29,25 +81,25 @@
 </p>
 
 <p>
-  <h3>Ingredients:</h3>
+<div id="floating-box2">
+  <strong style="font-size:110%;">Ingredients and Recipe:</strong><br>
   <%= safe_join(@recipe.ingredients.split("\r\n"), "<br/>".html_safe) %>
-  <%= link_to 'Edit Rating', edit_recipe_path(@recipe) %>
+  <%= link_to 'Edit', edit_recipe_path(@recipe) %>
+</div>
 </p>
-<br><br>
-
 
 <% if @rating.present? %>
-<h3>Listing Ratings</h3>
+  <div id="border">
+    <strong style="font-size:110%;">Listing Ratings</strong>
 
-<table>
-  <thead>
-    <tr>
-      <th>Rate</th>
-      <th>Comment</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-<% end %>
+	<table>
+	  <thead>
+		<tr>
+		  <th>Rate</th>
+		  <th>Comment</th>
+		  <th colspan="3"></th>
+		</tr>
+	  </thead>
 
   <tbody>
     <% @rating.each do |rating| %>
@@ -57,34 +109,96 @@
 		 <tr>
 	      <td><%= rating.rate %></td>
 		  <td><%= rating.comment %></td>
-		  <td><%= link_to 'Show', rating %></td>
-		  <td><%= link_to 'Edit', edit_rating_path(rating) %></td>
-		  <td><%= link_to 'Destroy', rating, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		  <td><%= link_to 'Delete', rating, method: :delete, data: { confirm: 'Are you sure?' } %></td><br>
 		 </tr>
 	   <% end %>
 	 <% end %>
     <% end %>
   </tbody>
 </table>
+</div>
+<% end %>
 
-<p>
-  <h3>Give a Rating</h3>
+
+ <p>
+  <strong style="font-size:110%;font-family:Times;">Give a Rating</strong>
 	<%= form_for([@recipe,@rating_new]) do |new_rat| %>
 	  <%= new_rat.label :rate %><br>
-	  <%= new_rat.number_field :rate %>
+	  <%= new_rat.number_field :rate %><br>
 	  <%= new_rat.label :comment %><br>
 	  <%= new_rat.text_area :comment %><br>
-	  <%= new_rat.submit "Add Rating" %>
+	  <%= new_rat.submit "Add Rating/Comment" %>
 	<% end %><br>
-</p>
+ </p>
 
-<p>
-  <h3>Upload New Image</h3>
+ <p>
+  <strong style="font-size:110%;font-family:Times;">Upload New Image</strong>
 	<%= form_for([@recipe,@image_new]) do |new_img| %>
 	  <%= new_img.file_field :uploaded_file %><br>
 	  <%= new_img.submit 'Add Image' %>
 	<% end %><br>
+ </p>
+
+<% else %>
+
+<div id="header">
+<h1><%= @recipe.recipe_name %></h1>
+</div>
+
+<p>
+  <% @image.each do |img| %>
+   <div id="floating-box">
+   <table>
+	<% if img.present? %>
+		<% if img.recipe_id == @recipe.id %>
+		  <td><%= image_tag img.filename, size: "200x140", alt: img.filename %>
+		<% end %>
+	<% end %>
+   </table>
+   </div>
+  <% end %>
+    <br>
 </p>
 
-<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+<p>
+  <div id="floating-box2">
+  <h3>Ingredients:</h3>
+  <%= safe_join(@recipe.ingredients.split("\r\n"), "<br/>".html_safe) %>
+  </div>
+</p>
+<br><br>
+
+  <% if @rating.present? %>
+	<div id="border">
+	<strong style="font-size:110%;font-family:Times;">Listing Ratings</strong>
+	<table>
+	  <thead>
+		<tr>
+		  <th>Rate</th>
+		  <th>Comment</th>
+		  <th colspan="3"></th>
+		</tr>
+	  </thead>
+  <% end %>
+
+  <tbody>
+    <% @rating.each do |rating| %>
+	 <% if rating.present? %>
+
+	   <% if rating.recipe_id == @recipe.id %>
+		 <tr>
+	      <td><%= rating.rate %></td>
+		  <td><%= rating.comment %></td>
+		 </tr>
+	   <% end %>
+	 <% end %>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<% end %>
+
+</div>
+<div id="footer">
 <%= link_to 'Back', recipes_path %>
+</html>

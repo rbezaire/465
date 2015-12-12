@@ -1,5 +1,44 @@
+<body style="background-color:lightgrey;">
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+#floating-box {
+	padding: 1px;
+	border: 5px solid black;
+}
+
+#header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+
+#footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px;
+}
+</style>
+</head>
+
+<center>
+<div id="floating-box">
+<div id="header">
 <h1>New Recipe</h1>
+</div>
 
 <%= render 'form' %>
 
+<div id="footer">
 <%= link_to 'Back', recipes_path %>
+</div>
+
+</div>
+</center>
+</html>
