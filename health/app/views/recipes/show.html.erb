@@ -1,12 +1,24 @@
 <p id="notice"><%= notice %></p>
 
+<br>
 <p>
-  <strong>Ingredients:</strong>
-  <%= @recipe.ingredients %>
+  <strong>Ingredients:</strong><br>
+  <%= safe_join(@recipe.ingredients.split("\r\n"), "<br/>".html_safe) %>
 </p>
+<br><br>
 
 <p>
-  <h2>New Image</h2>
+  <% @image.each do |img| %>
+	<% if img.recipe_id == @recipe.id %>
+      <%= image_tag img.filename, size: "200x200", alt: img.filename %><br>
+	<% end %>
+    <br>
+  <% end %>
+</p>
+<br><br>
+
+<p>
+  <h2>Upload New Image</h2>
 	<%= form_for([@recipe,@image_new]) do |new_img| %>
 	  <%= new_img.label :filename %>
 	  <%= new_img.file_field :uploaded_file %>
